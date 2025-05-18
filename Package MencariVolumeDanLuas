@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class BangunRuang {
+    private double Luas;
+    private double Volume;
+    private String Nama;
+
+    // Constructor kubus
+    public BangunRuang(double rusuk) {
+        Nama = "Kubus";
+        Luas = 6 * Math.pow(rusuk, 2);
+        Volume = Math.pow(rusuk, 3);
+    }
+
+    // Constructor balok
+    public BangunRuang(double panjang, double lebar, double tinggi) {
+        Nama = "Balok";
+        Luas = 2 * (panjang * lebar + panjang * tinggi + lebar * tinggi);
+        Volume = panjang * lebar * tinggi;
+    }
+
+    // Constructor Sylinder
+    public BangunRuang(double radius, double tinggi, boolean sylinder) {
+        Nama = "Sylinder";
+        Luas = 2 * Math.PI * radius * (radius + tinggi);
+        Volume = Math.PI * Math.pow(radius, 2) * tinggi;
+    }
+
+    // Constructor Bola
+  public BangunRuang(double radius, boolean bola, boolean bukansylinder ) {
+        Nama = "bola";
+        Luas = 4 * Math.PI * Math.pow(radius, 2);
+        Volume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
+    }
+
+    // Method Display
+    public void showHasil() {
+        System.out.printf("Shape: %s%n", Nama);
+        System.out.printf("Volume: %.2f %n", Volume);
+        System.out.printf("Luas: %.2f %n", Luas);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Menghitung Luas dan Volume Kubus
+        System.out.println("Masukkan rusuk kubus");
+        double edge = scanner.nextDouble();
+        BangunRuang kubus = new BangunRuang(edge);
+        kubus.showHasil();
+        
+        // Menghitung Luas dan Volume Balok
+        System.out.println("\nMassukkan panjang balok:");
+        double panjang = scanner.nextDouble();
+        System.out.println("Masukkan lebar balok:");
+        double lebar = scanner.nextDouble();
+        System.out.println("Masukkan tinggi balok:");
+        double tinggi = scanner.nextDouble();
+        BangunRuang balok = new BangunRuang(panjang, lebar, tinggi);
+        balok.showHasil();
+        
+        // Menghitung Luas dan Volume Sylinder
+        System.out.println("\nMasukkan radius sylinder:");
+        double sylinderRadius = scanner.nextDouble();
+        System.out.println("Massukan tinggi sylinder");
+        double sylindertinggi = scanner.nextDouble();
+        BangunRuang sylinder = new BangunRuang(sylinderRadius, sylindertinggi, true);
+        sylinder.showHasil();
+        
+        // Menghitung Luas dan Volume Bola
+        System.out.println("\nMasukkan radius bola:");
+        double bolaRadius = scanner.nextDouble();
+        BangunRuang bola = new BangunRuang(bolaRadius, true, true);
+        bola.showHasil();
+        
+        scanner.close();
+    }
+}
